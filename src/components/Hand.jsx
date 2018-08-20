@@ -1,25 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import posed from 'react-pose';
-
-const config = {
-  props: {
-    rotate: '225deg',
-  },
-  next: {
-    rotate: ({ from, rotation }) => {
-      console.log(from);
-      return rotation;
-    },
-  },
-};
-
-const HandGroup = posed.div(config);
 
 class Hand extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (snapshot !== null) {
-      this.previous = snapshot;
+      this.previous = snapshot; // TODO: use this value to calculate new rotation
     }
   }
 
@@ -34,20 +19,21 @@ class Hand extends Component {
   render() {
     const { long, short, rotation } = this.props;
 
+    const shortPath =
+      'M92.7 29.5V100c0 4 3.3 7.3 7.3 7.3s7.3-3.3 7.3-7.3V29.5c-2.4-.2-4.8-.4-7.3-.4s-4.9.1-7.3.4z';
+    const longPath =
+      'M100 11.2c-2.5 0-4.9.1-7.3.3V100c0 4 3.3 7.3 7.3 7.3s7.3-3.3 7.3-7.3V11.5c-2.4-.2-4.8-.3-7.3-.3z';
+
     return (
-      <HandGroup
-        pose="next"
-        rotation={rotation}
-        className={long || !short ? 'Hand Hand--long' : 'Hand Hand--long'}
-      >
-        <svg
-          className="Hand__image"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 200 200"
-        >
-          <path d={long || !short ? longPath : shortPath} />
-        </svg>
-      </HandGroup>
+      <path
+        className={
+          long || !short
+            ? 'Clock__Hand Clock__Hand--long'
+            : 'Clock__Hand Clock__Hand--short'
+        }
+        d={long || !short ? longPath : shortPath}
+        style={{ transform: `rotate(${rotation}deg)` }}
+      />
     );
   }
 }
@@ -61,7 +47,7 @@ Hand.propTypes = {
 Hand.defaultProps = {
   long: false,
   short: false,
-  rotation: 0,
+  rotation: 225,
 };
 
 export default Hand;
