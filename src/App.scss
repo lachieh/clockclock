@@ -1,0 +1,25 @@
+.App {
+  display: grid;
+  grid-template: 1fr / repeat(6, 16.667%);
+}
+
+.Digit {
+  display: grid;
+  grid-template: repeat(3, 25%) / repeat(2, 50%);
+}
+
+.Clock {
+  position: relative;
+  width: 100%;
+
+  &__Face {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  &__Hand {
+    transform-origin: 50% 50%;
+    transition: transform 800ms ease;
+  }
+}
