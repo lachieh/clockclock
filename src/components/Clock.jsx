@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Hand from './Hand';
 
 class Clock extends Component {
   previous = 225;
@@ -23,10 +24,6 @@ class Clock extends Component {
 
   render() {
     const { hour, minute } = this.props;
-    const shortPath =
-      'M92.7 29.5V100c0 4 3.3 7.3 7.3 7.3s7.3-3.3 7.3-7.3V29.5c-2.4-.2-4.8-.4-7.3-.4s-4.9.1-7.3.4z';
-    const longPath =
-      'M100 11.2c-2.5 0-4.9.1-7.3.3V100c0 4 3.3 7.3 7.3 7.3s7.3-3.3 7.3-7.3V11.5c-2.4-.2-4.8-.3-7.3-.3z';
 
     return (
       <div className="Clock">
