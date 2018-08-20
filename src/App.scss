@@ -5,12 +5,15 @@
 
 .Digit {
   display: grid;
-  grid-template: repeat(3, 25%) / repeat(2, 50%);
+  grid-template: repeat(3, calc(100% / 3)) / repeat(2, 50%);
+  margin: 2%;
 }
 
 .Clock {
   position: relative;
   width: 100%;
+  box-sizing: border-box;
+  padding: 3%;
 
   &__Face {
     display: block;
